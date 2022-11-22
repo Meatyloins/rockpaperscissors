@@ -1,4 +1,4 @@
-const choices = ['rock', 'paper', 'scissors'];
+const choices = document.querySelectorAll('button');
 let winCount = 0;
 let lossCount = 0;
 let tieCount = 0;
@@ -10,18 +10,28 @@ function getComputerChoice() {
 }
 
 function getPlayerChoice() {
-  let playerChoice = prompt('Choose Your Weapon.'); //.toLowerCase();
-  while (playerChoice === null || playerChoice === ' ' || playerChoice === '') {
-    alert('Please type rock, paper, or scissors.');
-    playerChoice = prompt('Choose Your Weapon.'); //.toLowerCase();
-  }
-
-  console.log(playerChoice.toLowerCase());
-  return playerChoice.toLowerCase();
+  console.log(playerChoice);
+  return playerChoice;
 }
-function playRound() {
-  let player = getPlayerChoice();
-  let computer = getComputerChoice();
+
+// choices.forEach((button) => {
+//   button.addEventListener('click', () => {
+//     alert(button.value);
+//   });
+// });
+
+choices.forEach((button) => {
+  button.addEventListener(
+    'click',
+    playRound(button.value, getComputerChoice())
+  );
+});
+
+// seems like old logs
+
+function playRound(player, computer) {
+  // let player = getPlayerChoice();
+  // let computer = getComputerChoice();
 
   const winMessage = `*You win! ${player} beats ${computer}!*`;
   const lossMessage = `*You lose! ${computer} beats ${player}!*`;
@@ -61,4 +71,4 @@ function game() {
   }
 }
 
-game();
+//game();
